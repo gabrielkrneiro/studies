@@ -1,12 +1,12 @@
 import React from "react";
 
 import "./App.css";
-import Table from "./components/BasicTable";
+import Home from "./pages/Home/Home";
 
 const App = () => {
   return (
     <div>
-      <Table />
+      <Home />
     </div>
   );
 };
