@@ -1,16 +1,18 @@
-import { Observable, Subject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { UsersAPI } from "../constants";
 import { BaseService } from "./BaseService";
 import { AxiosResponse } from "axios";
-import { User } from "../interfaces/UserInterfaces.ts";
+import { User } from "../interfaces/UserInterfaces";
 
 export class UserService extends BaseService {
-  userSubject = new Subject<AxiosResponse<User[], any>>();
+  userSubject = new RequestSubject<User[]>();
 
   users$ = this.userSubject.asObservable();
 
-  getUsers(): Observable<AxiosResponse<User[], any>> {
-    this.httpClient.get<any[]>(UsersAPI).subscribe(this.userSubject);
+  getUsers(): RequestObservable<User[]> {
+    this.request(UsersAPI, {
+      method: "GET",
+    }).subscribe(this.userSubject);
     return this.users$;
   }
 }

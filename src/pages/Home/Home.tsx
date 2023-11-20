@@ -6,6 +6,7 @@ export const Home: React.FC = () => {
   return (
     <div>
       <h2>Home</h2>
+      <h2>Is loading</h2>
       <button onClick={getUsers}>Get Users</button>
     </div>
   );

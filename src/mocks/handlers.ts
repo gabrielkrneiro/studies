@@ -1,6 +1,6 @@
-import { HttpResponse, http } from "msw";
+import { HttpResponse, http, delay } from "msw";
 import { UsersAPI } from "../constants";
-import { User } from "../interfaces/UserInterfaces.ts";
+import { User } from "../interfaces/UserInterfaces";
 
 const dbUsers: User[] = [
   {
@@ -14,7 +14,8 @@ const dbUsers: User[] = [
 ];
 
 export const handlers = [
-  http.get(UsersAPI, () => {
+  http.get(UsersAPI, async ({}) => {
+    await delay(300);
     return HttpResponse.json(dbUsers, { status: 200 });
   }),
 ];
